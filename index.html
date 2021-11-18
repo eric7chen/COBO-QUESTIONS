@@ -29,7 +29,9 @@
 
          function turnIn() {
             for (let i = 0; i < inc; i++) {
-               document.querySelector("#question" + i).submit();
+               setTimeout(function () {
+                  document.forms[i].submit();
+               }, 1000);
             }
          }
 
@@ -45,6 +47,11 @@
                inc -= 1;
             }
          }
+
+         function submitted(button) {
+            this.value = "submitted";
+            this.onclick = "";
+         }
       </script>
    </head>
    <body>
@@ -59,9 +66,10 @@
             id="question0"
             method="post"
             action="https://docs.google.com/forms/d/e/1FAIpQLSe3lhXXUj1o1hbHxq90wQMohuUKb7SO0nK8NMuj5QOVYJaoRw/formResponse"
+            target="_blank"
          >
             <input type="text" name="usp" value="pp_url" hidden />
-            <input type="text" name="entry.1867477848" id="qname" />
+            <input type="text" name="entry.1867477848" id="qname" hidden />
             <input
                type="text"
                name="entry.1097255283"
@@ -108,6 +116,13 @@
                <option value="4">4</option>
                <option value="5">5</option>
             </select>
+            <!-- <input
+               type="submit"
+               name="enter"
+               id="enter"
+               value="submit question"
+               onclick="submitted(this);"
+            /> -->
          </form>
       </div>
       <p>
@@ -128,6 +143,12 @@
             class="button-remove"
          />
       </p>
-      <input type="submit" name="submit" id="submit" onclick="turnIn();" />
+      <input
+         type="submit"
+         name="submit"
+         id="submit"
+         onclick="turnIn();"
+         value="This sorta works"
+      />
    </body>
 </html>
