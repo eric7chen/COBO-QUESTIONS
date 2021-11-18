@@ -21,6 +21,10 @@
             document
                .querySelector("#question" + inc)
                .querySelector("#number").value = inc + 1;
+            document
+               .querySelector("#question" + inc)
+               .querySelector("#qname").value =
+               document.getElementById("name").value;
          }
 
          function turnIn() {
@@ -57,7 +61,7 @@
             action="https://docs.google.com/forms/d/e/1FAIpQLSe3lhXXUj1o1hbHxq90wQMohuUKb7SO0nK8NMuj5QOVYJaoRw/formResponse"
          >
             <input type="text" name="usp" value="pp_url" hidden />
-            <input type="text" name="entry.1867477848" id="qname" hidden />
+            <input type="text" name="entry.1867477848" id="qname" />
             <input
                type="text"
                name="entry.1097255283"
