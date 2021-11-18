@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Submit Yo Questions</title>
+      <link rel="stylesheet" href="styles.css" />
+      <script type="text/javascript">
+         var inc = 1;
+         function buttonClicks() {
+            inc += 1;
+         }
+
+         function addQuestion() {
+            var input = document.getElementById("question0").cloneNode(true);
+            var parent = document.getElementById("question0").parentElement;
+            input.id = "question" + inc;
+            parent.append(input);
+            document.querySelector("#question" + inc).reset();
+            document
+               .querySelector("#question" + inc)
+               .querySelector("#number").value = inc + 1;
+         }
+
+         function turnIn() {
+            for (let i = 0; i < inc; i++) {
+               document.querySelector("#question" + i).submit();
+            }
+         }
+
+         function saveName() {
+            document.getElementById("qname").value =
+               document.getElementById("name").value;
+         }
+
+         function removeQuestion() {
+            if (inc > 1) {
+               var select = document.querySelector(".questions-form");
+               select.removeChild(select.lastChild);
+               inc -= 1;
+            }
+         }
+      </script>
+   </head>
+   <body>
+      <h1>Questions Form</h1>
+      <div class="questions-form">
+         <p>
+            <label for="name">Enter Name:</label>
+            <input type="text" name="name" id="name" onchange="saveName();" />
+         </p>
+
+         <form
+            id="question0"
+            method="post"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSe3lhXXUj1o1hbHxq90wQMohuUKb7SO0nK8NMuj5QOVYJaoRw/formResponse"
+         >
+            <input type="text" name="usp" value="pp_url" hidden />
+            <input type="text" name="entry.1867477848" id="qname" hidden />
+            <input
+               type="text"
+               name="entry.1097255283"
+               id="number"
+               value="1"
+               readonly
+               size="1"
+            />
+            <select name="entry.1716652713" id="category">
+               <option value="Movies" disabled selected>Select Category</option>
+               <option value="Movies">Movies</option>
+               <option value="TV">TV</option>
+               <option value="Music">Music</option>
+               <option value="Sports">Sports</option>
+               <option value="Celebrities">Celebrities</option>
+               <option value="Books/Literature/Podcasts">
+                  Books/Literature/Podcasts
+               </option>
+               <option value="Video Games">Video Games</option>
+               <option value="Memes/Internet Culture">
+                  Meme/Internet Culture
+               </option>
+               <option value="Other">Other</option>
+            </select>
+            <input
+               type="text"
+               name="entry.1477247672"
+               id="question"
+               placeholder="This better be a good question"
+               size="150"
+            />
+            <input
+               type="text"
+               name="entry.1944677566"
+               id="answer"
+               placeholder="Answer"
+               size="50"
+            />
+            <select name="entry.1788047297" id="difficulty">
+               <option value="1" disabled selected>Select Difficulty</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+            </select>
+         </form>
+      </div>
+      <p>
+         <input
+            type="image"
+            src="https://img.icons8.com/ios/50/000000/plus.png"
+            alt="add question"
+            id="plus"
+            onclick="addQuestion(); buttonClicks(); "
+            class="button-add"
+         />
+         <input
+            type="image"
+            src="https://img.icons8.com/ios/50/000000/minus.png"
+            alt="remove question"
+            id="minus"
+            onclick="removeQuestion();"
+            class="button-remove"
+         />
+      </p>
+      <input type="submit" name="submit" id="submit" onclick="turnIn();" />
+   </body>
+</html>
